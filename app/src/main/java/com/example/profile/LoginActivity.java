@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText email,password;
     Button login;
     FirebaseAuth auth;
-    TextView forgetpassword;
+    TextView forgetPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +37,11 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_black);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        forgetpassword = findViewById(R.id.forget_password);
-        forgetpassword.setOnClickListener(new View.OnClickListener() {
+        forgetPassword = findViewById(R.id.forget_password);
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(LoginActivity.this,ResetPasswordActivity.class));
+                startActivity(new Intent(LoginActivity.this,ForgotPasswordActivity.class));
             }
         });
 
