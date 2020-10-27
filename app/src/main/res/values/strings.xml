@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Profile</string>
+    <string-array name="shopping_item">
+        <item>Sporty</item>
+        <item>Social Drinker</item>
+        <item>Social Smoker</item>
+        <item>Party Animal</item>
+        <item>Workout Freak</item>
+        <item>Bibliophile</item>
+    </string-array>
+    <string-array name="personality_types">
+        <item>Introvert</item>
+        <item>Extrovert</item>
+        <item>Ambivert</item>
+    </string-array>
 </resources>
