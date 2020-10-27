@@ -129,7 +129,7 @@
                     app:layout_constraintTop_toTopOf="@+id/dob" />
 
                 <TextView
-                    android:id="@+id/gender"
+                    android:id="@+id/genderText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -143,10 +143,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="@+id/gender"
+                    app:layout_constraintBottom_toBottomOf="@+id/genderText"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/gender"
-                    app:layout_constraintTop_toTopOf="@+id/gender">
+                    app:layout_constraintStart_toEndOf="@+id/genderText"
+                    app:layout_constraintTop_toTopOf="@+id/genderText">
 
                     <RadioButton
                         android:id="@+id/Male"
