@@ -41,7 +41,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/nameText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -64,7 +64,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/name" />
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/mobileText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -72,7 +72,7 @@
                     android:hint="Enter Mobile Number"
                     android:inputType="textPersonName"
                     app:layout_constraintBottom_toBottomOf="@+id/mobile"
-                    app:layout_constraintEnd_toEndOf="@+id/editText"
+                    app:layout_constraintEnd_toEndOf="@+id/nameText"
                     app:layout_constraintStart_toEndOf="@+id/mobile"
                     app:layout_constraintTop_toTopOf="@+id/mobile" />
 
@@ -86,7 +86,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/mobile" />
 
                 <EditText
-                    android:id="@+id/editText3"
+                    android:id="@+id/emailText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -94,7 +94,7 @@
                     android:hint="Enter Email Address"
                     android:inputType="textEmailAddress"
                     app:layout_constraintBottom_toBottomOf="@+id/email"
-                    app:layout_constraintEnd_toEndOf="@+id/editText2"
+                    app:layout_constraintEnd_toEndOf="@+id/mobileText"
                     app:layout_constraintStart_toEndOf="@+id/email"
                     app:layout_constraintTop_toTopOf="@+id/email" />
 
@@ -140,6 +140,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/dob" />
 
                 <RadioGroup
+                    android:id="@+id/genderRadio"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -198,7 +199,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText4"
+                    android:id="@+id/aboutUsText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
@@ -277,9 +278,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
                     android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView15" />
@@ -292,6 +291,18 @@
                     android:text="Tags :"
                     app:layout_constraintStart_toStartOf="@+id/textView14"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                <Button
+                    android:id="@+id/submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="Submit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvItemSelected" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

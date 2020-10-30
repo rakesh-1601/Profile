@@ -49,8 +49,8 @@ public class StartActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(StartActivity.this, RegisterActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(StartActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
