@@ -36,7 +36,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
-                    android:text="Name :"
+                    android:text="Name         :"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -60,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:text="Mobile No :"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/name"
                     app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -81,7 +83,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Email :"
+                    android:text="Email          :"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/mobile"
                     app:layout_constraintTop_toBottomOf="@+id/mobile" />
 
@@ -102,8 +105,9 @@
                     android:id="@+id/dob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:text="Date Of Birth :"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/email"
                     app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -113,6 +117,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:text="Date"
+                    android:textColor="#FFF"
+                    android:background="@drawable/round_bitton"
                     app:layout_constraintBottom_toBottomOf="@+id/dob"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/date"
@@ -123,6 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Choose Date"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/dob"
                     app:layout_constraintEnd_toStartOf="@+id/dateButton"
                     app:layout_constraintStart_toEndOf="@+id/dob"
@@ -132,20 +139,21 @@
                     android:id="@+id/genderText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginBottom="24dp"
-                    android:text="Gender"
+                    android:text="Gender :"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/dob"
                     app:layout_constraintTop_toBottomOf="@+id/dob" />
 
                 <RadioGroup
                     android:id="@+id/genderRadio"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="@+id/genderText"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/genderText"
                     app:layout_constraintTop_toTopOf="@+id/genderText">
 
@@ -153,12 +161,17 @@
                         android:id="@+id/Male"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="20dp"
                         android:text="Male" />
 
                     <RadioButton
                         android:id="@+id/Female"
                         android:layout_width="wrap_content"
+                        android:paddingLeft="6dp"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
                         android:text="Female" />
                 </RadioGroup>
 
@@ -169,6 +182,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="Personal Info"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -194,7 +209,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
-                    android:text="ABout Me :"
+                    android:text="ABout Me "
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -202,6 +219,7 @@
                     android:id="@+id/aboutUsText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="16dp"
                     android:ems="10"
@@ -236,6 +254,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="Interests"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -243,20 +263,21 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="19dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:text="Personality Type :"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/textView13"
                     app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
                 <Spinner
                     android:id="@+id/personality"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/edit_text_background"
                     android:entries="@array/personality_types"
+                    android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="@+id/textView14"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView14"
                     app:layout_constraintTop_toTopOf="@+id/textView14" />
 
@@ -268,7 +289,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="32dp"
-                    android:text="make"
+                    android:text="Add"
+                    android:textColor="#fff"
+                    android:background="@drawable/round_bitton"
                     app:layout_constraintBottom_toBottomOf="@+id/textView15"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
                     app:layout_constraintTop_toTopOf="@+id/textView15" />
@@ -277,7 +300,8 @@
                     android:id="@+id/tagsText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView15"
@@ -287,18 +311,20 @@
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
-                    android:text="Tags :"
+                    android:layout_marginTop="48dp"
+                    android:text="Add Tags         :"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/textView14"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <Button
                     android:id="@+id/submit"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/rectange_button"
                     android:text="Submit"
+                    android:textColor="#fff"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -326,7 +352,7 @@
                     android:layout_height="150dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="16dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/profileicon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -339,7 +365,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="Profile Picture"
-                    android:textSize="24sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -349,7 +375,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="24dp"
-                    android:src="@drawable/ic_launcher_background"
+                    android:src="@drawable/ic_edit_black_24dp"
                     app:layout_constraintStart_toEndOf="@+id/profile_image"
                     app:layout_constraintTop_toTopOf="@+id/profile_image" />
 

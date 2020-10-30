@@ -81,6 +81,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/textView"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/genie" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

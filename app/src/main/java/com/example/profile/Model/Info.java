@@ -67,6 +67,11 @@ public class Info {
         this.gen = gen;
     }
 
+    public Info(){
+
+
+    }
+
     public Info(String name, String mobile, String email, String dob, String aboutus, String personality, String tags, String gen) {
         this.name = name;
         this.mobile = mobile;
