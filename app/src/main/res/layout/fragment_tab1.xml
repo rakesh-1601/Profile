@@ -28,96 +28,99 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="32dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/profileicon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/name"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
                 android:text="Name :"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
             <EditText
                 android:id="@+id/nameText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="Enter Your Name"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/name"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/name"
                 app:layout_constraintTop_toTopOf="@+id/name" />
 
             <TextView
                 android:id="@+id/mobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:text="Mobile No :"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                 app:layout_constraintStart_toStartOf="@+id/name"
-                app:layout_constraintTop_toBottomOf="@+id/name" />
+                app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
             <EditText
                 android:id="@+id/mobileText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:ems="10"
                 android:hint="Enter Mobile Number"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/mobile"
                 app:layout_constraintEnd_toEndOf="@+id/nameText"
-                app:layout_constraintStart_toEndOf="@+id/mobile"
                 app:layout_constraintTop_toTopOf="@+id/mobile" />
 
             <TextView
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:text="Email :"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView5"
                 app:layout_constraintStart_toStartOf="@+id/mobile"
-                app:layout_constraintTop_toBottomOf="@+id/mobile" />
+                app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
             <EditText
                 android:id="@+id/emailText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:ems="10"
                 android:hint="Enter Email Address"
                 android:inputType="textEmailAddress"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/email"
                 app:layout_constraintEnd_toEndOf="@+id/mobileText"
-                app:layout_constraintStart_toEndOf="@+id/email"
                 app:layout_constraintTop_toTopOf="@+id/email" />
 
             <TextView
                 android:id="@+id/dob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:text="Date Of Birth :"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView8"
                 app:layout_constraintStart_toStartOf="@+id/email"
-                app:layout_constraintTop_toBottomOf="@+id/email" />
+                app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="Choose Date"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/dob"
-                app:layout_constraintStart_toEndOf="@+id/dob"
+                app:layout_constraintEnd_toEndOf="@+id/emailText"
+                app:layout_constraintStart_toStartOf="@+id/emailText"
                 app:layout_constraintTop_toTopOf="@+id/dob" />
 
             <TextView
@@ -126,18 +129,70 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Gender :"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView7"
                 app:layout_constraintStart_toStartOf="@+id/dob"
-                app:layout_constraintTop_toBottomOf="@+id/dob" />
+                app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
             <TextView
                 android:id="@+id/genderText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:text="Male"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/text"
-                app:layout_constraintStart_toEndOf="@+id/text"
+                app:layout_constraintStart_toStartOf="@+id/date"
                 app:layout_constraintTop_toTopOf="@+id/text" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="64dp"
+                android:src="@drawable/name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/email"
+                app:layout_constraintBottom_toTopOf="@+id/imageView8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/call"
+                app:layout_constraintBottom_toTopOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/gender"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/date"
+                app:layout_constraintBottom_toTopOf="@+id/imageView7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
