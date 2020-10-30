@@ -24,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
 
     CircleImageView profile_image;
-    TextView username;
+    TextView name,mobile,email,dob,gender;
 
     FirebaseUser firebaseUser;
     DatabaseReference reference;
@@ -52,26 +52,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final ProgressDialog pd = new ProgressDialog(MainActivity.this);
-        pd.setMessage("Loading..");
-        pd.show();
-        pd.dismiss();
-        profile_image = findViewById(R.id.profile_image);
-        username = findViewById(R.id.username);
-//        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-
-
         final TabLayout tabLayout = findViewById(R.id.tabLayout);
         final ViewPager pager = findViewById(R.id.viewpager);
-
-
         SectionsPagerAdapter pagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(pager);
+
+
     }
 
 }
