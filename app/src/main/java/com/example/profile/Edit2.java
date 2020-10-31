@@ -2,6 +2,7 @@ package com.example.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -134,20 +136,39 @@ public class Edit2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 assert firebaseUser != null;
                 final String userid = firebaseUser.getUid();
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Info").child(userid);
-                HashMap<String, Object> map = new HashMap<>();
-                map.put("aboutus", aboutus.getText().toString());
-                map.put("personality",personality.getSelectedItem().toString());
-                map.put("tags",tags.getText().toString());
-                reference.updateChildren(map);
-                Intent intent = new Intent(Edit2.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                Boolean valid = validate();
+                if (valid) {
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Info").child(userid);
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("aboutus", aboutus.getText().toString());
+                    map.put("personality", personality.getSelectedItem().toString());
+                    map.put("tags", tags.getText().toString());
+                    reference.updateChildren(map);
+                    Intent intent = new Intent(Edit2.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
             }
         });
+    }
+    public Boolean validate(){
+        ConstraintLayout constraintLayout = findViewById(R.id.cs);
+        if(aboutus.getText().toString().equals("")){
+            Snackbar.make(constraintLayout, "About me cannot be empty", Snackbar.LENGTH_LONG).show();
+            return false;
+        }else if(tags.getText().toString().isEmpty()){
+            Snackbar.make(constraintLayout, "Tags cannot be empty", Snackbar.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Edit2.this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

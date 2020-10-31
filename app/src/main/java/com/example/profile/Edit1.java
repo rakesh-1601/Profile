@@ -6,7 +6,9 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -21,14 +23,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
+import com.example.profile.Model.Info;
 import com.example.profile.Model.New;
 import com.example.profile.Model.User;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -71,6 +76,13 @@ public class Edit1 extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Edit1.this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -165,37 +177,63 @@ public class Edit1 extends AppCompatActivity {
                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 assert firebaseUser != null;
                 final String userid = firebaseUser.getUid();
-                reference = FirebaseDatabase.getInstance().getReference("Info").child(userid);
-                HashMap<String, Object> map = new HashMap<>();
-                map.put("name", name.getText().toString());
-                map.put("mobile",mobile.getText().toString());
-                map.put("email",email.getText().toString());
-                map.put("dob",dob.getText().toString());
-                map.put("gen",gen);
-                reference.updateChildren(map);
+                Boolean valid = validate(gen);
+                if(valid){
+                    reference = FirebaseDatabase.getInstance().getReference("Info").child(userid);
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("name", name.getText().toString());
+                    map.put("mobile", mobile.getText().toString());
+                    map.put("email", email.getText().toString());
+                    map.put("dob", dob.getText().toString());
+                    map.put("gen", gen);
+                    reference.updateChildren(map);
 
-                reference = FirebaseDatabase.getInstance().getReference("New").child(userid);
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        n = dataSnapshot.getValue(New.class);
-                        HashMap<String, Object> mapT = new HashMap<>();
+                    reference = FirebaseDatabase.getInstance().getReference("New").child(userid);
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            n = dataSnapshot.getValue(New.class);
+                            HashMap<String, Object> mapT = new HashMap<>();
 
-                        mapT.put("imageURL",n.getS());
-                        DatabaseReference referenceT = FirebaseDatabase.getInstance().getReference("Users").child(userid);
-                        referenceT.updateChildren(mapT);
-                        Intent intent = new Intent(Edit1.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        finish();
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                            mapT.put("imageURL", n.getS());
+                            DatabaseReference referenceT = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+                            referenceT.updateChildren(mapT);
+                            Intent intent = new Intent(Edit1.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
             }
         });
+
+    }
+
+    Boolean validate(String gen){
+        ConstraintLayout constraintLayout = findViewById(R.id.cs);
+        if(name.getText().toString().equals("")){
+            Snackbar.make(constraintLayout, "Name cannot be empty", Snackbar.LENGTH_LONG).show();
+            return false;
+        }else if(mobile.getText().toString().equals("") || mobile.getText().toString().length()!=10){
+            Snackbar.make(constraintLayout, "Invalid Mobile Number", Snackbar.LENGTH_LONG).show();
+            return false;
+        }else if(TextUtils.isEmpty(email.getText().toString()) || !Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
+            Snackbar.make(constraintLayout, "Email invalid", Snackbar.LENGTH_LONG).show();
+            return false;
+        }else if(dob.getText().toString().equals("Choose Date")){
+            Snackbar.make(constraintLayout, "Date of Birth cannot be empty", Snackbar.LENGTH_LONG).show();
+            return false;
+        }else if(gen.equals("")){
+            Snackbar.make(constraintLayout, "Select gender", Snackbar.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 
     private void openImage() {

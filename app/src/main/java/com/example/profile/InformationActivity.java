@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.profile.Model.Info;
@@ -30,6 +33,7 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -49,6 +53,8 @@ import java.util.HashMap;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class InformationActivity extends AppCompatActivity {
+
+    // Variables
     Button dateButton;
     TextView tags;
     EditText name, mobile, email,aboutus;
@@ -65,14 +71,17 @@ public class InformationActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     DatabaseReference reference;
     CircleImageView image_profile;
-
     private static final int IMAGE_REQUEST = 1;
     private Uri imageUri;
     private StorageTask uploadTask;
     boolean change = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final ProgressDialog pd = new ProgressDialog(InformationActivity.this);
+        pd.setMessage("Loading");
+        pd.show();
         setContentView(R.layout.activity_information);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
@@ -86,12 +95,14 @@ public class InformationActivity extends AppCompatActivity {
                     Intent intent = new Intent(InformationActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
+                    pd.dismiss();
                 }
                 if (user.getImageURL().equals("default")){
 
                 } else if(change){
                     Glide.with(InformationActivity.this).load(user.getImageURL()).into(image_profile);
                 }
+                pd.dismiss();
             }
 
             @Override
@@ -169,8 +180,6 @@ public class InformationActivity extends AppCompatActivity {
                 mDialog.show();
             }
         });
-
-
     }
 
     private void getId() {
@@ -223,39 +232,68 @@ public class InformationActivity extends AppCompatActivity {
                 int checkedRadioButtonId = gender.getCheckedRadioButtonId();
                 if (checkedRadioButtonId == -1) {
                     // No item selected
-                }
-                else{
+                } else {
                     if (checkedRadioButtonId == R.id.Male) {
                         gen = "Male";
-                    }else {
+                    } else {
                         gen = "Female";
                     }
                 }
 
-                Info info = new Info(name.getText().toString(),mobile.getText().toString(),email.getText().toString(),
-                dob.getText().toString(),aboutus.getText().toString(),personality.getSelectedItem().toString(),tags.getText().toString(),
-                gen);
-                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                assert firebaseUser != null;
-                final String userid = firebaseUser.getUid();
-                reference = FirebaseDatabase.getInstance().getReference("Info").child(userid);
+                Info info = new Info(name.getText().toString(), mobile.getText().toString(), email.getText().toString(),
+                        dob.getText().toString(), aboutus.getText().toString(), personality.getSelectedItem().toString(), tags.getText().toString(),
+                        gen);
+                Boolean valid = validate(info);
+                if (valid) {
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                    assert firebaseUser != null;
+                    final String userid = firebaseUser.getUid();
+                    reference = FirebaseDatabase.getInstance().getReference("Info").child(userid);
 
-                reference.setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
-                            HashMap<String, Object> map = new HashMap<>();
-                            map.put("status", "Yes");
-                            reference.updateChildren(map);
-                            Intent intent = new Intent(InformationActivity.this, MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
+                    reference.setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+                                HashMap<String, Object> map = new HashMap<>();
+                                map.put("status", "Yes");
+                                reference.updateChildren(map);
+                                Intent intent = new Intent(InformationActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
+    }
+
+    Boolean validate(Info info){
+        ConstraintLayout constraintLayout = findViewById(R.id.cs);
+        if(info.getName().equals("")){
+            Snackbar.make(constraintLayout, "Name cannot be empty", Snackbar.LENGTH_LONG).show();
+            return false;
+        }else if(info.getMobile().equals("") || info.getMobile().length()!=10){
+            Snackbar.make(constraintLayout, "Invalid Mobile Number", Snackbar.LENGTH_LONG).show();
+            return false;
+        }else if(TextUtils.isEmpty(info.getEmail()) || !Patterns.EMAIL_ADDRESS.matcher(info.getEmail()).matches()){
+            Snackbar.make(constraintLayout, "Email invalid", Snackbar.LENGTH_LONG).show();
+            return false;
+        }else if(info.getDob().equals("Choose Date")){
+            Snackbar.make(constraintLayout, "Date of Birth cannot be empty", Snackbar.LENGTH_LONG).show();
+            return false;
+        }else if(info.getGen().equals("")){
+            Snackbar.make(constraintLayout, "Select gender", Snackbar.LENGTH_LONG).show();
+            return false;
+        }else if(info.getAboutus().equals("")){
+            Snackbar.make(constraintLayout, "About me cannot be empty", Snackbar.LENGTH_LONG).show();
+            return false;
+        }else if(info.getTags().isEmpty()){
+            Snackbar.make(constraintLayout, "Tags cannot be empty", Snackbar.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 
     private void openImage() {

@@ -7,6 +7,7 @@
     tools:context=".InformationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cs"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -72,7 +73,7 @@
                     android:layout_marginStart="16dp"
                     android:ems="10"
                     android:hint="Enter Mobile Number"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     app:layout_constraintBottom_toBottomOf="@+id/mobile"
                     app:layout_constraintEnd_toEndOf="@+id/nameText"
                     app:layout_constraintStart_toEndOf="@+id/mobile"
@@ -262,7 +263,7 @@
                 <TextView
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
-                    android:layout_height="19dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:text="Personality Type :"
                     android:textSize="16sp"
