@@ -62,12 +62,13 @@ public class Edit1 extends AppCompatActivity {
     FirebaseUser firebaseUser;
     DatabaseReference reference;
     CircleImageView image_profile;
-
     private static final int IMAGE_REQUEST = 1;
     private Uri imageUri;
     private StorageTask uploadTask;
     boolean change = false;
     New n;
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){

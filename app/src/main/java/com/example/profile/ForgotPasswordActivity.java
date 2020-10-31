@@ -19,11 +19,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
-
+    EditText email;
+    Button reset;
+    FirebaseAuth firebaseAuth;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;
@@ -31,52 +33,49 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-        EditText email;
-        Button reset;
-        FirebaseAuth firebaseAuth;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_forgot_password);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_forgot_password);
 
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle("Reset Password");
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_black);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Reset Password");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_black);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-            email = findViewById(R.id.email);
-            reset = findViewById(R.id.reset);
-            final ConstraintLayout constraintLayout = findViewById(R.id.cs);
-            reset.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String s  =email.getText().toString();
-                    if(s.equals("")){
-                        Snackbar
-                                .make(constraintLayout, "All fields are required", Snackbar.LENGTH_LONG)
-                                .show();
-                    }else {
-                        firebaseAuth = FirebaseAuth.getInstance();
-                        firebaseAuth.sendPasswordResetEmail(s).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    Snackbar
-                                            .make(constraintLayout, "Check Email Address", Snackbar.LENGTH_LONG)
-                                            .show();
-                                    startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
-                                }else{
-                                    Snackbar
-                                            .make(constraintLayout, task.getException().getMessage(), Snackbar.LENGTH_LONG)
-                                            .show();
-                                }
+        email = findViewById(R.id.email);
+        reset = findViewById(R.id.reset);
+        final ConstraintLayout constraintLayout = findViewById(R.id.cs);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = email.getText().toString();
+                if (s.equals("")) {
+                    Snackbar
+                            .make(constraintLayout, "All fields are required", Snackbar.LENGTH_LONG)
+                            .show();
+                } else {
+                    firebaseAuth = FirebaseAuth.getInstance();
+                    firebaseAuth.sendPasswordResetEmail(s).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Snackbar
+                                        .make(constraintLayout, "Check Email Address", Snackbar.LENGTH_LONG)
+                                        .show();
+                                startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
+                            } else {
+                                Snackbar
+                                        .make(constraintLayout, task.getException().getMessage(), Snackbar.LENGTH_LONG)
+                                        .show();
                             }
-                        });
-                    }
+                        }
+                    });
                 }
-            });
+            }
+        });
 
-        }
     }
+}
