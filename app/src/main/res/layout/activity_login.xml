@@ -95,4 +95,25 @@
         app:layout_constraintTop_toTopOf="@+id/textView"
         app:srcCompat="@drawable/genie" />
 
+    <ImageView
+        android:id="@+id/googleIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="64dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:srcCompat="@drawable/google" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Sign in using Google"
+        app:layout_constraintBottom_toBottomOf="@+id/googleIcon"
+        app:layout_constraintStart_toEndOf="@+id/googleIcon"
+        app:layout_constraintTop_toTopOf="@+id/googleIcon" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
