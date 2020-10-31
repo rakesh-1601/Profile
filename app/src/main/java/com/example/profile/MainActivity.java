@@ -61,9 +61,11 @@ public class MainActivity extends AppCompatActivity {
                 if(tab==0){
                     Intent intent = new Intent(MainActivity.this,Edit1.class);
                     startActivity(intent);
+                    finish();
                 }else{
                     Intent intent = new Intent(MainActivity.this,Edit2.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
