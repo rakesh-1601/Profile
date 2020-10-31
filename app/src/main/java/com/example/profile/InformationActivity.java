@@ -37,7 +37,7 @@ import java.util.HashMap;
 
 public class InformationActivity extends AppCompatActivity {
     Button dateButton;
-    TextView date,tags;
+    TextView tags;
     EditText name, mobile, email,aboutus;
     TextView dob;
     Button mOrder, submit;
@@ -111,7 +111,7 @@ public class InformationActivity extends AppCompatActivity {
                         for (int i = 0; i < mUserItems.size(); i++) {
                             item = item + listItems[mUserItems.get(i)];
                             if (i != mUserItems.size() - 1) {
-                                item = item + ", ";
+                                item = item + "  ";
                             }
                         }
                         mItemSelected.setText(item);
@@ -146,7 +146,7 @@ public class InformationActivity extends AppCompatActivity {
 
     private void getId() {
         dateButton = findViewById(R.id.dateButton);
-        date = findViewById(R.id.date);
+        dob = findViewById(R.id.date);
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,7 +163,7 @@ public class InformationActivity extends AppCompatActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                dob.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -172,7 +172,6 @@ public class InformationActivity extends AppCompatActivity {
         name = findViewById(R.id.nameText);
         mobile = findViewById(R.id.mobileText);
         email = findViewById(R.id.emailText);
-        dob = findViewById(R.id.date);
         submit = findViewById(R.id.submit);
         gender = findViewById(R.id.genderRadio);
         aboutus = findViewById(R.id.aboutUsText);

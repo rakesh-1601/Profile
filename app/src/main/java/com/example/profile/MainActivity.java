@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
+    ImageView edit;
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -50,6 +53,22 @@ public class MainActivity extends AppCompatActivity {
         SectionsPagerAdapter pagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(pager);
+        edit = findViewById(R.id.edit);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tab = tabLayout.getSelectedTabPosition();
+                if(tab==0){
+                    Intent intent = new Intent(MainActivity.this,Edit1.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(MainActivity.this,Edit2.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+
     }
 
 }
