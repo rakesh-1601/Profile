@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,16 @@ public class Edit2 extends AppCompatActivity {
     ArrayList<Integer> mUserItems = new ArrayList<>();
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit2);
@@ -42,6 +53,9 @@ public class Edit2 extends AppCompatActivity {
         getSupportActionBar().setTitle("Edit Profile");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_black);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
         getId();
     }
 
